@@ -1,9 +1,10 @@
-
-
+import { Route, Routes } from "react-router-dom";
+import Navbar from "./routes/Navbar.component";
 function App() {
   return (
-    <div className="App">
-    </div>
+    <Routes>
+      <Route path="/" element={<Navbar />} />
+    </Routes>
   );
 }
 
