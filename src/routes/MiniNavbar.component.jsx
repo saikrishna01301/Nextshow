@@ -1,5 +1,5 @@
 import { Box, Link, styled, Typography } from "@mui/material";
-import { NavLink, Outlet } from "react-router-dom";
+import { NavLink,} from "react-router-dom";
 
 const MiniWrapper = styled(Box)(({ theme }) => ({
   width: "70%",

@@ -1,6 +1,7 @@
 import { styled } from "@mui/material";
 import data from "../../Server/movies.json";
 import MoviesCard from "./MoviesCard.component";
+import { useEffect, useState } from "react";
 
 const MoviesContainer = styled("div")(({ theme }) => ({
   width: "70%",
@@ -11,12 +12,28 @@ const MoviesContainer = styled("div")(({ theme }) => ({
   justifyContent: "space-between",
 }));
 
-const Movies = () => {
+const Movies = ({ searchMovie }) => {
+  const [filteredMovies, setFilteredMovies] = useState(data);
+
+  useEffect(() => {
+    // Ensure searchMovie is a string
+    if (searchMovie.searchMovie.length > 0) {
+      const filtered = data.filter((movie) =>
+        movie.title
+          .toLowerCase()
+          .includes(searchMovie.searchMovie.toLowerCase())
+      );
+      setFilteredMovies(filtered);
+    } else {
+      setFilteredMovies(data);
+    }
+  }, [searchMovie]);
+
   return (
     <MoviesContainer>
-      {data.map((movie) => {
-        return <MoviesCard key={movie.id} movie={movie} />;
-      })}
+      {filteredMovies.map((movie) => (
+        <MoviesCard key={movie.id} movie={movie} />
+      ))}
     </MoviesContainer>
   );
 };

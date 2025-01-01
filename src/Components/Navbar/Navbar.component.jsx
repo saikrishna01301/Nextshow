@@ -1,55 +1,21 @@
-import {
-  AppBar,
-  Typography,
-  Link,
-  styled,
-  InputBase,
-  Box,
-  Button,
-} from "@mui/material";
+import { AppBar, Typography, Link, InputBase, Button } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import { NavLink, Outlet } from "react-router-dom";
 import { Menu, ExpandMore } from "@mui/icons-material";
-import MiniNavbar from "./MiniNavbar.component";
+import MiniNavbar from "../../routes/MiniNavbar.component";
+import {
+  StyledToolbar,
+  Search,
+  SearchIconWrapper,
+  StyledBox,
+  LocationSelection,
+} from "./Navbar.styled";
 
-const StyledToolbar = styled(Box)(({ theme }) => ({
-  height: "70px",
-  width: "70%",
-  margin: "0 auto",
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "space-between",
-}));
+const Navbar = (props) => {
+  const onChangeHandler = (e) => {
+    props.setSearchMovie(e.target.value);
+  };
 
-const Search = styled("div")(({ theme }) => ({
-  display: "flex",
-  alignItems: "center",
-  height: "50%",
-  width: "35%",
-  padding: "5px",
-  border: "2px solid #eeeeee",
-  borderRadius: "4px",
-}));
-
-const SearchIconWrapper = styled("div")(({ theme }) => ({
-  // display: "flex",
-  // alignItems: "center",
-}));
-
-const StyledBox = styled(Box)(({ theme }) => ({
-  width: "20%",
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "space-between",
-  fontSize: "18px",
-}));
-
-const LocationSelection = styled("div")(({ theme }) => ({
-  display: "flex",
-  alignItems: "center",
-  cursor: "pointer",
-}));
-const Navbar = () => {
   return (
     <>
       <AppBar position="sticky" sx={{ backgroundColor: "#fff" }}>
@@ -73,6 +39,7 @@ const Navbar = () => {
             <InputBase
               placeholder="Search for movies and sports..."
               sx={{ width: "100%", fontSize: "14px", marginLeft: "10px" }}
+              onChange={onChangeHandler}
             />
           </Search>
           <StyledBox>

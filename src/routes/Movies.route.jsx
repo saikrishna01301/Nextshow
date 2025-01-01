@@ -1,7 +1,6 @@
-import { Route, Routes } from "react-router-dom";
 import Movies from "../Components/Movies/Movies.component";
 
-const MoviesRoute = () => {
-  return <Movies />;
+const MoviesRoute = (searchMovie) => {
+  return <Movies searchMovie={searchMovie} />;
 };
 export default MoviesRoute;
