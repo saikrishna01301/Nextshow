@@ -13,6 +13,7 @@ const CastImage = styled(CardMedia)(({ theme }) => ({
 const CastWrapper = styled(Box)(({ theme }) => ({
   display: "flex",
   flexDirection: "column",
+  alignItems: "center",
 }));
 
 //fetching data from API (Google custom search/ google cloud)
@@ -37,10 +38,8 @@ const fetchImage = async (name) => {
   }
 };
 
-
 //the Cast component
 const Cast = ({ cast }) => {
-
   const [images, setImages] = useState([]);
   useEffect(() => {
     const fetchData = async () => {
@@ -51,13 +50,13 @@ const Cast = ({ cast }) => {
         })
       );
       setImages(fetchedImages); // Set all images once fetched
-    //   console.log(fetchedImages);
+      //   console.log(fetchedImages);
     };
 
     fetchData(); // Call fetchData only once when component mounts
   }, []); // Empty dependency array ensures it runs only once
 
-  // the component starts here 
+  // the component starts here
   return (
     <Box
       sx={{

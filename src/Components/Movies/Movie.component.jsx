@@ -6,11 +6,13 @@ import {
   styled,
   Typography,
 } from "@mui/material";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import Cast from "../Cast/Cast.component";
+import { useState } from "react";
+import TicketDialog from "../TicketDialog/TicketDialog.component";
 
+//styled themes section
 const MovieContainer = styled(Box)(({ theme }) => ({}));
-
 const ContainerMainRight = styled(Box)(({ theme }) => ({}));
 const ContainerMainLeft = styled(Box)(({ theme }) => ({
   display: "flex",
@@ -37,68 +39,99 @@ const AboutMovie = styled(Box)(({ theme }) => ({
   margin: "20px auto",
   // marginTop: "20px ",
 }));
+//styled themes section end
 
+// Movie component starts here
 const Movie = () => {
   const location = useLocation();
   const movie = location.state;
 
-  return (
-    <MovieContainer>
-      <ContainerMain>
-        <ContainerMainLeft>
-          <CardMedia
-            sx={{ height: 350, width: 250, borderRadius: "10px" }}
-            image={movie.thumbnail}
-            title={movie.title}
-          />
-          <ContainerMainRight sx={{ marginTop: "5%" }}>
-            <Typography variant="h2" sx={{ marginBottom: "18px" }}>
-              {movie.title}
-            </Typography>
+  const [open, setOpen] = useState(false);
+  const navigate = useNavigate();
 
-            <Box
-              sx={{
-                display: "flex",
-                alignItems: "center",
-                gap: 1,
-                marginTop: "10px",
-                marginBottom: "18px",
-              }}
-            >
-              <Background>
-                <Typography sx={{ fontSize: "18px" }}>2D</Typography>
-              </Background>
-              <Background>
-                <Typography sx={{ fontSize: "18px" }}>
-                  {movie.genres.join(", ")}
-                </Typography>
-              </Background>
-            </Box>
-            <Button
-              variant="contained"
-              sx={{
-                backgroundColor: "#f84464",
-                fontSize: "12px",
-                padding: "5px",
-                marginTop: "10px",
-              }}
-            >
-              Book tickets
-            </Button>
-          </ContainerMainRight>
-        </ContainerMainLeft>
-      </ContainerMain>
-      <AboutMovie>
-        <Typography variant="h2" sx={{ marginBottom: "6px" }}>
-          About the movie
-        </Typography>
-        <Typography variant="body" sx={{ fontSize: "16px", color: "#333333" }}>
-          {movie.extract}
-        </Typography>
-        <Divider sx={{ margin: "20px 0" }} />
-        <Cast cast={movie.cast} />
-      </AboutMovie>
-    </MovieContainer>
+  const bookTickets = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  const handleFormatClick = (format) => {
+    console.log(format);
+    handleClose();
+    navigate("/book-tickets", { state: { ...movie, language_format: format } }); // redirect to book tickets page
+  };
+
+  return (
+    <>
+      <MovieContainer>
+        <ContainerMain>
+          <ContainerMainLeft>
+            <CardMedia
+              sx={{ height: 350, width: 250, borderRadius: "10px" }}
+              image={movie.thumbnail}
+              title={movie.title}
+            />
+            <ContainerMainRight sx={{ marginTop: "5%" }}>
+              <Typography variant="h2" sx={{ marginBottom: "18px" }}>
+                {movie.title}
+              </Typography>
+
+              <Box
+                sx={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: 1,
+                  marginTop: "10px",
+                  marginBottom: "18px",
+                }}
+              >
+                <Background>
+                  <Typography sx={{ fontSize: "18px" }}>2D</Typography>
+                </Background>
+                <Background>
+                  <Typography sx={{ fontSize: "18px" }}>
+                    {movie.genres.join(", ")}
+                  </Typography>
+                </Background>
+              </Box>
+              <Button
+                variant="contained"
+                sx={{
+                  backgroundColor: "#f84464",
+                  fontSize: "12px",
+                  padding: "5px",
+                  marginTop: "10px",
+                }}
+                onClick={bookTickets}
+              >
+                Book tickets
+              </Button>
+            </ContainerMainRight>
+          </ContainerMainLeft>
+        </ContainerMain>
+        <AboutMovie>
+          <Typography variant="h2" sx={{ marginBottom: "6px" }}>
+            About the movie
+          </Typography>
+          <Typography
+            variant="body"
+            sx={{ fontSize: "16px", color: "#333333" }}
+          >
+            {movie.extract}
+          </Typography>
+          <Divider sx={{ margin: "20px 0" }} />
+          <Cast cast={movie.cast} />
+        </AboutMovie>
+      </MovieContainer>
+      <TicketDialog
+        movie={movie}
+        open={open}
+        handleClose={handleClose}
+        handleFormatClick={handleFormatClick}
+      />
+    </>
   );
 };
 export default Movie;

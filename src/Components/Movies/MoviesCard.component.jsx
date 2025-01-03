@@ -5,7 +5,12 @@ const MoviesCard = ({ movie }) => {
   const navigate = useNavigate();
 
   const goToMovie = () => {
-    navigate(`/movie/${movie.id}`, { state: movie });
+    navigate(
+      `/movie/${movie.title.trim().replace(/\s+/g, "-").toLowerCase()}`,
+      {
+        state: movie,
+      }
+    );
   };
 
   return (
