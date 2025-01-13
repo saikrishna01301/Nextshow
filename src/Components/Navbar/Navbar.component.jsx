@@ -10,10 +10,13 @@ import {
   StyledBox,
   LocationSelection,
 } from "./Navbar.styled";
+import { SearchMovieContext } from "../../Contexts/SearchMovie.context";
+import { useContext } from "react";
 
-const Navbar = (props) => {
+const Navbar = () => {
+  const { setSearchMovie } = useContext(SearchMovieContext);
   const onChangeHandler = (e) => {
-    props.setSearchMovie(e.target.value);
+    setSearchMovie(e.target.value);
   };
 
   return (

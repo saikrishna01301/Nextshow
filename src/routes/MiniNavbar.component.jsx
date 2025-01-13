@@ -1,5 +1,5 @@
 import { Box, Link, styled, Typography } from "@mui/material";
-import { NavLink,} from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 const MiniWrapper = styled(Box)(({ theme }) => ({
   width: "70%",
@@ -10,7 +10,7 @@ const MiniWrapper = styled(Box)(({ theme }) => ({
 }));
 const MiniNavbar = () => {
   return (
-    <MiniWrapper>
+    <MiniWrapper sx={{ backgroundColor: "#f2f2f2" }}>
       <Box sx={{ display: "flex", gap: "25px", color: "#333" }}>
         <Link component={NavLink} to="/movies" underline="none">
           <Typography variant="h5" component="p" color="#333">

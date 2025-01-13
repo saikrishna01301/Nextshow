@@ -1,25 +1,21 @@
 import { useLocation } from "react-router-dom";
 import { Box, Button, styled, Typography } from "@mui/material";
-import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
-import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft";
 
-const MovieDetails = styled(Box)(({ theme }) => ({
-  width: "70%",
-  margin: "0px auto",
-  padding: "25px 0px",
+import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
+import { MarginOutlined } from "@mui/icons-material";
+import DatesBox from "./DatesBox.component";
+import MovieDetails from "./MovieDetails.component";
+import ShowTime from "./ShowTime.component";
+
+const Filter = styled(Typography)(({ theme }) => ({
+  fontSize: "16px",
+  borderLeft: "1px solid #d0d5e6",
+  padding: "15px",
+  alignSelf: "stretch",
+  display: "flex",
+  alignItems: "center",
+  fontSize: "15px",
 }));
-
-const StyledIcon = styled("svg")(({ theme }) => ({
-  width: "40px",
-  height: "40px",
-  color: "#999",
-  cursor: "pointer",
-  "&:hover": {
-    color: "#666",
-  },
-}));
-
-const DatesBox = styled(Box)(({ theme }) => ({}));
 
 const BookTickets = () => {
   const location = useLocation();
@@ -27,128 +23,53 @@ const BookTickets = () => {
   console.log(movie);
 
   return (
-    <>
+    <Box sx={{ backgroundColor: "#fff" }}>
       <Box sx={{ borderBottom: "1px solid #d0d5e6" }}>
-        <MovieDetails>
-          <Typography
-            variant="h3"
-            sx={{ fontSize: "36px", color: "#333", fontWeight: "400" }}
-          >
-            {movie.title} - {movie.language_format.language}
-          </Typography>
-          <Box
-            sx={{
-              display: "flex",
-              gap: "10",
-            }}
-          >
-            {movie.genres.map((genre, index) => {
-              return (
-                <Typography
-                  key={index}
-                  sx={{
-                    marginRight: "10px",
-                    color: "#666",
-                    border: "1px solid #666",
-                    fontSize: "10px",
-                    padding: "2px 8px",
-                    textTransform: "uppercase",
-                    borderRadius: "50px",
-                  }}
-                >
-                  {genre}
-                </Typography>
-              );
-            })}
-          </Box>
-        </MovieDetails>
+        <MovieDetails movie={movie} />
       </Box>
-      <Box sx={{ width: "70%", margin: "0px auto" }}>
-        <DatesBox sx={{ display: "flex" }}>
-          <StyledIcon as={KeyboardArrowLeftIcon} />
-          <Box
-            sx={{
-              width: "250px",
-              display: "flex",
-              flexDirection: "row",
-              gap: "1git px",
-            }}
-          >
-            <Box
-              sx={{
-                display: "flex",
-                flexDirection: "column",
-                justifyContent: "center",
-                alignItems: "center",
-                width: "40px",
-                padding: "5px",
-                backgroundColor: "#f84464",
-                color: "#fff",
-                borderRadius: "8px",
-              }}
-            >
-              <Typography variant="body" sx={{ fontSize: "10px" }}>
-                SUN
-              </Typography>
-              <Typography variant="body" sx={{ fontSize: "16px" }}>
-                04
-              </Typography>
-              <Typography variant="body" sx={{ fontSize: "10px" }}>
-                JAN
-              </Typography>
-            </Box>
-            <Box
-              sx={{
-                display: "flex",
-                flexDirection: "column",
-                justifyContent: "center",
-                alignItems: "center",
-                width: "40px",
-                padding: "5px",
-                backgroundColor: "#f84464",
-                color: "#fff",
-                borderRadius: "8px",
-              }}
-            >
-              <Typography variant="body" sx={{ fontSize: "10px" }}>
-                SUN
-              </Typography>
-              <Typography variant="body" sx={{ fontSize: "16px" }}>
-                04
-              </Typography>
-              <Typography variant="body" sx={{ fontSize: "10px" }}>
-                JAN
-              </Typography>
-            </Box>
-            <Box
-              sx={{
-                display: "flex",
-                flexDirection: "column",
-                justifyContent: "center",
-                alignItems: "center",
-                width: "40px",
-                padding: "5px",
-                backgroundColor: "#f84464",
-                color: "#fff",
-                borderRadius: "8px",
-              }}
-            >
-              <Typography variant="body" sx={{ fontSize: "10px" }}>
-                SUN
-              </Typography>
-              <Typography variant="body" sx={{ fontSize: "16px" }}>
-                04
-              </Typography>
-              <Typography variant="body" sx={{ fontSize: "10px" }}>
-                JAN
-              </Typography>
-            </Box>
-          </Box>
-          <StyledIcon as={KeyboardArrowRightIcon} />
-        </DatesBox>
-        <Box></Box>
+      <Box
+        sx={{
+          width: "70%",
+          margin: "0px auto",
+          display: "flex",
+          justifyContent: "space-between",
+        }}
+      >
+        <DatesBox />
+        <Box
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "flex-end",
+            width: "50%",
+          }}
+        >
+          <Filter variant="body">
+            {movie.language_format.language}-{movie.language_format.format}
+            <KeyboardArrowDownIcon sx={{ fontSize: "25px" }} />
+          </Filter>
+          <Filter variant="body">
+            {movie.language_format.language}-{movie.language_format.format}
+            <KeyboardArrowDownIcon sx={{ fontSize: "25px" }} />
+          </Filter>
+          <Filter variant="body" sx={{ paddingRight: "0px" }}>
+            {movie.language_format.language}-{movie.language_format.format}
+            <KeyboardArrowDownIcon sx={{ fontSize: "25px" }} />
+          </Filter>
+        </Box>
       </Box>
-    </>
+
+      <Box
+        sx={{
+          width: "100%",
+          height: "100vh",
+          backgroundColor: "#f2f2f2",
+          padding: "10px 0px",
+        }}
+      >
+        <ShowTime />
+      </Box>
+    </Box>
   );
 };
 export default BookTickets;

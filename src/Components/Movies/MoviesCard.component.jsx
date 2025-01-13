@@ -2,6 +2,7 @@ import { Box, Card, CardMedia, Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 
 const MoviesCard = ({ movie }) => {
+
   const navigate = useNavigate();
 
   const goToMovie = () => {

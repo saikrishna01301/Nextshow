@@ -60,7 +60,6 @@ const TicketDialog = ({
             <Box sx={{ marginBottom: "15px" }}>
               <Typography
                 variant="h5"
-                onClick={handleFormatClick}
                 sx={{ marginBottom: "10px" }}
               >
                 {language}
