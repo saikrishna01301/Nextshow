@@ -9,7 +9,8 @@ const MoviesContainer = styled("div")(({ theme }) => ({
   margin: "10px auto",
   display: "flex",
   flexWrap: "wrap",
-  justifyContent: "space-between",
+  justifyContent: "flex-start",
+  gap: "17px",
 }));
 
 const Movies = () => {

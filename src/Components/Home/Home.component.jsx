@@ -3,6 +3,7 @@ import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import { useContext } from "react";
 import { moviesContext } from "../../Contexts/Movie.context";
 import MoviesCard from "../Movies/MoviesCard.component";
+import Sidebar from "../Sidebar/Sidebar.component";
 
 const HomeWrapper = styled(Box)((theme) => ({
   width: "70%",
@@ -20,26 +21,28 @@ const Home = () => {
   const movieList = movies.sort(() => 0.5 - Math.random()).slice(0, 4);
 
   return (
-    <HomeWrapper>
-      <RecommendWrapper>
-        <Typography variant="h6" sx={{ fontSize: "24px" }}>
-          Recommended Movies
-        </Typography>
-        <Box sx={{ display: "flex", alignItems: "center", color: "#f84464" }}>
-          <Typography
-            variant="h5"
-            component="div" 
-            sx={{ display: "flex", alignItems: "center", fontSize: "14px" }}
-          >
-            See All
+    <>
+      <HomeWrapper>
+        <RecommendWrapper>
+          <Typography variant="h6" sx={{ fontSize: "24px" }}>
+            Recommended Movies
           </Typography>
-          <ArrowForwardIosIcon sx={{ fontSize: "10px" }} />
-        </Box>
-      </RecommendWrapper>
-      {movieList.map((movie) => (
-        <MoviesCard key={movie.id} movie={movie} />
-      ))}
-    </HomeWrapper>
+          <Box sx={{ display: "flex", alignItems: "center", color: "#f84464" }}>
+            <Typography
+              variant="h5"
+              component="div"
+              sx={{ display: "flex", alignItems: "center", fontSize: "14px" }}
+            >
+              See All
+            </Typography>
+            <ArrowForwardIosIcon sx={{ fontSize: "10px" }} />
+          </Box>
+        </RecommendWrapper>
+        {movieList.map((movie) => (
+          <MoviesCard key={movie.id} movie={movie} />
+        ))}
+      </HomeWrapper>
+    </>
   );
 };
 

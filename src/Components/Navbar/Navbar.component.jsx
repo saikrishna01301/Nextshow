@@ -1,8 +1,16 @@
-import { AppBar, Typography, Link, InputBase, Button } from "@mui/material";
+import {
+  AppBar,
+  Typography,
+  Link,
+  InputBase,
+  Button,
+  Stack,
+} from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import { NavLink, Outlet } from "react-router-dom";
 import { Menu, ExpandMore } from "@mui/icons-material";
 import MiniNavbar from "../../routes/MiniNavbar.component";
+import Dialog from "../Dialogs/Dialog.component";
 import {
   StyledToolbar,
   Search,
@@ -11,7 +19,9 @@ import {
   LocationSelection,
 } from "./Navbar.styled";
 import { SearchMovieContext } from "../../Contexts/SearchMovie.context";
-import { useContext } from "react";
+import { useContext, useState } from "react";
+import SignIn from "../Auth/SignIn.component";
+import Sidebar from "../Sidebar/Sidebar.component";
 
 const Navbar = () => {
   const { setSearchMovie } = useContext(SearchMovieContext);
@@ -19,8 +29,17 @@ const Navbar = () => {
     setSearchMovie(e.target.value);
   };
 
+  const [openDialog, setOpenDialog] = useState(false);
+  const handleDialog = () => {
+    setOpenDialog(true);
+  };
+  const handleDialogClose = () => {
+    setOpenDialog(false);
+  };
+
   return (
     <>
+      <Dialog />
       <AppBar position="sticky" sx={{ backgroundColor: "#fff" }}>
         <StyledToolbar>
           <Link component={NavLink} to="/" underline="none">
@@ -62,6 +81,7 @@ const Navbar = () => {
                 padding: "3px",
                 display: { xs: "none", sm: "block" },
               }}
+              onClick={handleDialog}
             >
               SignIn
             </Button>
@@ -78,6 +98,8 @@ const Navbar = () => {
       </AppBar>
       <MiniNavbar />
       <Outlet />
+      <SignIn open={openDialog} handleClose={handleDialogClose} />
+      <Sidebar />
     </>
   );
 };

@@ -9,7 +9,7 @@ import {
 import { useLocation, useNavigate } from "react-router-dom";
 import Cast from "../Cast/Cast.component";
 import { useState } from "react";
-import TicketDialog from "../TicketDialog/TicketDialog.component";
+import TicketDialog from "../BookTickets/TicketDialog.component";
 
 //styled themes section
 const MovieContainer = styled(Box)(({ theme }) => ({}));

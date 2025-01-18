@@ -1,4 +1,5 @@
 import { DisplaySettings } from "@mui/icons-material";
+// import Dialog from "../Dialogs/Dialog.component";
 import {
   Avatar,
   Box,
@@ -50,7 +51,9 @@ const TicketDialog = ({
         <Box>
           <Typography sx={{ fontSize: "12px" }}>{movie.title}</Typography>
         </Box>
-        <Typography sx={{ fontSize: "18px" }}>Select language and format</Typography>
+        <Typography sx={{ fontSize: "18px" }}>
+          Select language and format
+        </Typography>
       </DialogTitle>
       <DialogContent>
         {Object.entries(movie.language_format).map(([language, formats]) => {
@@ -58,10 +61,7 @@ const TicketDialog = ({
           console.log(typeof formats, formats);
           return (
             <Box sx={{ marginBottom: "15px" }}>
-              <Typography
-                variant="h5"
-                sx={{ marginBottom: "10px" }}
-              >
+              <Typography variant="h5" sx={{ marginBottom: "10px" }}>
                 {language}
               </Typography>
               <FormatWrapper>
