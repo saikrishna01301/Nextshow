@@ -1,5 +1,6 @@
 import { DisplaySettings } from "@mui/icons-material";
 // import Dialog from "../Dialogs/Dialog.component";
+
 import {
   Avatar,
   Box,
@@ -10,7 +11,23 @@ import {
   styled,
   Typography,
 } from "@mui/material";
-import { useState } from "react";
+import { useContext, useState } from "react";
+
+const Format = styled(Typography)(({ theme }) => ({
+  marginRight: "8px",
+  fontSize: "14px",
+  cursor: "pointer",
+  border: "1px solid #cccccc",
+  padding: "8px 12px",
+  color: "#f84464",
+  borderRadius: "16px",
+}));
+
+const FormatWrapper = styled(Box)(({ theme }) => ({
+  display: "flex",
+  alignItems: "center",
+  flexDirection: "row",
+}));
 
 const TicketDialog = ({
   movie,
@@ -19,22 +36,8 @@ const TicketDialog = ({
   handleFormatClick,
   bookTickets,
 }) => {
-  const Format = styled(Typography)(({ theme }) => ({
-    marginRight: "8px",
-    fontSize: "14px",
-    cursor: "pointer",
-    border: "1px solid #cccccc",
-    padding: "8px 12px",
-    color: "#f84464",
-    borderRadius: "16px",
-  }));
-
-  const FormatWrapper = styled(Box)(({ theme }) => ({
-    display: "flex",
-    alignItems: "center",
-    flexDirection: "row",
-  }));
-
+  // const { userMovie, setUserMovie } = useContext(userMovieContext);
+  // const movie = userMovie;
   return (
     <Dialog
       open={open}
@@ -57,7 +60,6 @@ const TicketDialog = ({
       </DialogTitle>
       <DialogContent>
         {Object.entries(movie.language_format).map(([language, formats]) => {
-          console.log(language);
           console.log(typeof formats, formats);
           return (
             <Box sx={{ marginBottom: "15px" }}>

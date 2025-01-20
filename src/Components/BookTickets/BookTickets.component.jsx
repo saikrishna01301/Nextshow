@@ -6,6 +6,8 @@ import { MarginOutlined } from "@mui/icons-material";
 import DatesBox from "./DatesBox.component";
 import MovieDetails from "./MovieDetails.component";
 import ShowTime from "./ShowTime.component";
+import { userMovieContext } from "../../Contexts/UserMovie.context";
+import { useContext } from "react";
 
 const Filter = styled(Typography)(({ theme }) => ({
   fontSize: "16px",
@@ -18,14 +20,15 @@ const Filter = styled(Typography)(({ theme }) => ({
 }));
 
 const BookTickets = () => {
-  const location = useLocation();
-  const movie = location.state;
-  console.log(movie);
+  // const location = useLocation();
+  // const movie = location.state;
+  const { userMovie, setUserMovie } = useContext(userMovieContext);
+  const movie = userMovie;
 
   return (
     <Box sx={{ backgroundColor: "#fff" }}>
       <Box sx={{ borderBottom: "1px solid #d0d5e6" }}>
-        <MovieDetails movie={movie} />
+        <MovieDetails />
       </Box>
       <Box
         sx={{
@@ -45,15 +48,15 @@ const BookTickets = () => {
           }}
         >
           <Filter variant="body">
-            {movie.language_format.language}-{movie.language_format.format}
+            {movie.selected_language}-{movie.selected_format}
             <KeyboardArrowDownIcon sx={{ fontSize: "25px" }} />
           </Filter>
           <Filter variant="body">
-            {movie.language_format.language}-{movie.language_format.format}
+            {movie.selected_language}-{movie.selected_format}
             <KeyboardArrowDownIcon sx={{ fontSize: "25px" }} />
           </Filter>
           <Filter variant="body" sx={{ paddingRight: "0px" }}>
-            {movie.language_format.language}-{movie.language_format.format}
+            {movie.selected_language}-{movie.selected_format}
             <KeyboardArrowDownIcon sx={{ fontSize: "25px" }} />
           </Filter>
         </Box>

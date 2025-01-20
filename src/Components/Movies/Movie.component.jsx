@@ -8,8 +8,9 @@ import {
 } from "@mui/material";
 import { useLocation, useNavigate } from "react-router-dom";
 import Cast from "../Cast/Cast.component";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import TicketDialog from "../BookTickets/TicketDialog.component";
+import { userMovieContext } from "../../Contexts/UserMovie.context";
 
 //styled themes section
 const MovieContainer = styled(Box)(({ theme }) => ({}));
@@ -43,8 +44,10 @@ const AboutMovie = styled(Box)(({ theme }) => ({
 
 // Movie component starts here
 const Movie = () => {
-  const location = useLocation();
-  const movie = location.state;
+  // const location = useLocation();
+  // const movie = location.state;
+  const { userMovie, setUserMovie } = useContext(userMovieContext);
+  const movie = userMovie;
 
   const [open, setOpen] = useState(false);
   const navigate = useNavigate();
@@ -57,10 +60,15 @@ const Movie = () => {
     setOpen(false);
   };
 
-  const handleFormatClick = (format) => {
+  const handleFormatClick = ({ language, format }) => {
+    // redirect to book tickets page
     console.log(format);
+    setUserMovie((prev) => {
+      return { ...prev, selected_language: language, selected_format: format };
+    });
+    // navigate("/book-tickets", { state: { ...movie, language_format: format } }); // redirect to book tickets page
     handleClose();
-    navigate("/book-tickets", { state: { ...movie, language_format: format } }); // redirect to book tickets page
+    navigate("/book-tickets");
   };
 
   return (

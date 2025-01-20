@@ -1,11 +1,13 @@
 import { Box, Card, CardMedia, Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-
+import { userMovieContext } from "../../Contexts/UserMovie.context";
+import { useContext } from "react";
 const MoviesCard = ({ movie }) => {
-
   const navigate = useNavigate();
+  const { userMovie, setUserMovie } = useContext(userMovieContext);
 
   const goToMovie = () => {
+    setUserMovie(movie);
     navigate(
       `/movie/${movie.title.trim().replace(/\s+/g, "-").toLowerCase()}`,
       {
