@@ -22,6 +22,7 @@ import { SearchMovieContext } from "../../Contexts/SearchMovie.context";
 import { useContext, useState } from "react";
 import SignIn from "../Auth/SignIn.component";
 import Sidebar from "../Sidebar/Sidebar.component";
+import EmailPassword from "../Auth/EmailPassword.component";
 
 const Navbar = () => {
   const { setSearchMovie } = useContext(SearchMovieContext);
@@ -30,11 +31,21 @@ const Navbar = () => {
   };
 
   const [openDialog, setOpenDialog] = useState(false);
+  const [openEmailPassword, setOpenEmailPassword] = useState(false);
+  // const [toggleDialog, setToggleDialog] = useState(handleDialog);
+
   const handleDialog = () => {
     setOpenDialog(true);
+    // setOpenEmailPassword(true);
   };
   const handleDialogClose = () => {
     setOpenDialog(false);
+  };
+  const handleEmailPasswordClose = () => {
+    setOpenEmailPassword(false);
+  };
+  const handleEmailPasswordOpen = () => {
+    setOpenEmailPassword(true);
   };
 
   return (
@@ -98,7 +109,16 @@ const Navbar = () => {
       </AppBar>
       <MiniNavbar />
       <Outlet />
-      <SignIn open={openDialog} handleClose={handleDialogClose} />
+      <SignIn
+        open={openDialog}
+        handleClose={handleDialogClose}
+        handleEmailPasswordOpen={handleEmailPasswordOpen}
+        openEmailPassword
+      />
+      <EmailPassword
+        open={openEmailPassword}
+        handleClose={handleEmailPasswordClose}
+      ></EmailPassword>
       <Sidebar />
     </>
   );

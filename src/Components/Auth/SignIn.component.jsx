@@ -65,7 +65,7 @@ const SignInTextField = styled(TextField)(({ theme }) => ({
   },
 }));
 
-const SignIn = ({ open, handleClose }) => {
+const SignIn = ({ open, handleClose, handleEmailPasswordOpen }) => {
   return (
     <Dialog open={open} handleClose={handleClose}>
       <DialogTitle
@@ -95,7 +95,7 @@ const SignIn = ({ open, handleClose }) => {
           </SignInType>
         </TypeWrapper>
         <TypeWrapper>
-          <SignInType>
+          <SignInType onClick={handleEmailPasswordOpen}>
             <EmailOutlinedIcon sx={{ fontSize: "18px", marginLeft: "20px" }} />
             <Typography variant="h6">
               Continue with Email and Password

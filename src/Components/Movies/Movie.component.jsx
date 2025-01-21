@@ -11,6 +11,7 @@ import Cast from "../Cast/Cast.component";
 import { useState, useContext } from "react";
 import TicketDialog from "../BookTickets/TicketDialog.component";
 import { userMovieContext } from "../../Contexts/UserMovie.context";
+import ButtonPrimary from "../Button/ButtonPrimary.component";
 
 //styled themes section
 const MovieContainer = styled(Box)(({ theme }) => ({}));
@@ -104,7 +105,18 @@ const Movie = () => {
                   </Typography>
                 </Background>
               </Box>
-              <Button
+              <ButtonPrimary
+                sx={{
+                  backgroundColor: "#f84464",
+                  fontSize: "12px",
+                  padding: "5px",
+                  marginTop: "10px",
+                }}
+                onClick={bookTickets}
+              >
+                Book tickets
+              </ButtonPrimary>
+              {/* <Button
                 variant="contained"
                 sx={{
                   backgroundColor: "#f84464",
@@ -115,7 +127,7 @@ const Movie = () => {
                 onClick={bookTickets}
               >
                 Book tickets
-              </Button>
+              </Button> */}
             </ContainerMainRight>
           </ContainerMainLeft>
         </ContainerMain>
