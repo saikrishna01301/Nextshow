@@ -1,6 +1,6 @@
 import { Button } from "@mui/material";
 
-const ButtonPrimary = ({ children, sx, onClick }) => {
+const ButtonPrimary = ({ children, sx, onClick, type }) => {
   return (
     <Button
       variant="contained"
@@ -13,6 +13,7 @@ const ButtonPrimary = ({ children, sx, onClick }) => {
         ...sx,
       }}
       onClick={onClick}
+      type={type}
     >
       {children}
     </Button>

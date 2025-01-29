@@ -41,11 +41,15 @@ const Navbar = () => {
   const handleDialogClose = () => {
     setOpenDialog(false);
   };
-  const handleEmailPasswordClose = () => {
+  const handleEmailPasswordClose = (e) => {
+    e.preventDefault();
     setOpenEmailPassword(false);
+    setOpenDialog(true);
   };
-  const handleEmailPasswordOpen = () => {
+  const handleEmailPasswordOpen = (e) => {
+    e.preventDefault();
     setOpenEmailPassword(true);
+    setOpenDialog(false);
   };
 
   return (

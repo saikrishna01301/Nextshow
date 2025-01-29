@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Dialog from "../Dialogs/Dialog.component";
+import DefaultDialog from "../Dialogs/Dialog.component";
 import {
   DialogTitle,
   Typography,
@@ -13,7 +13,7 @@ import America from "../../assets/America.png";
 import Google from "../../assets/Google.png";
 import { fontSize, styled } from "@mui/system";
 import EmailOutlinedIcon from "@mui/icons-material/EmailOutlined";
-import DefaultDialog from "../Dialogs/Dialog.component";
+import CloseIconComponent from "../Dialogs/CloseIcon.component";
 
 const SignInTypesWrapper = styled(Box)(({ theme }) => ({
   width: "100%",
@@ -67,13 +67,13 @@ const SignInTextField = styled(TextField)(({ theme }) => ({
 
 const SignIn = ({ open, handleClose, handleEmailPasswordOpen }) => {
   return (
-    <Dialog open={open} handleClose={handleClose}>
+    <DefaultDialog open={open} handleClose={handleClose}>
       <DialogTitle
         sx={{ fontSize: "16px", padding: "24px 28px", margin: "0px auto" }}
       >
         Get Started
       </DialogTitle>
-
+      <CloseIconComponent handleClose={handleClose} />
       <SignInTypesWrapper>
         <TypeWrapper>
           <SignInType>
@@ -129,7 +129,7 @@ const SignIn = ({ open, handleClose, handleEmailPasswordOpen }) => {
           I agree to the Terms & Conditions & Privacy Policy
         </Typography>
       </SignInTypesWrapper>
-    </Dialog>
+    </DefaultDialog>
   );
 };
 export default SignIn;

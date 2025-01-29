@@ -1,5 +1,5 @@
 import { createContext, useState } from "react";
-import MOVIES from "../Server/movies.json";
+import MOVIES from "../assets/movies.json";
 
 export const moviesContext = createContext({ movies: MOVIES });
 

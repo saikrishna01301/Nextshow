@@ -1,6 +1,4 @@
-import { DisplaySettings } from "@mui/icons-material";
-import { Dialog, styled, Typography } from "@mui/material";
-import CloseIcon from "@mui/icons-material/Close";
+import { Dialog } from "@mui/material";
 
 const DefaultDialog = ({ open, handleClose, children }) => {
   return (
@@ -18,16 +16,6 @@ const DefaultDialog = ({ open, handleClose, children }) => {
         },
       }}
     >
-      <CloseIcon
-        sx={{
-          fontSize: "24px",
-          position: "absolute",
-          top: "5%",
-          right: "5%",
-          cursor: "pointer",
-        }}
-        onClick={handleClose}
-      />
       {children}
     </Dialog>
   );

@@ -1,5 +1,6 @@
 import { DisplaySettings } from "@mui/icons-material";
 // import Dialog from "../Dialogs/Dialog.component";
+import CloseIconComponent from "../Dialogs/CloseIcon.component";
 
 import {
   Avatar,
@@ -50,6 +51,7 @@ const TicketDialog = ({
         },
       }}
     >
+      <CloseIconComponent handleClose={handleClose} />
       <DialogTitle>
         <Box>
           <Typography sx={{ fontSize: "12px" }}>{movie.title}</Typography>
@@ -60,7 +62,6 @@ const TicketDialog = ({
       </DialogTitle>
       <DialogContent>
         {Object.entries(movie.language_format).map(([language, formats]) => {
-          console.log(typeof formats, formats);
           return (
             <Box sx={{ marginBottom: "15px" }}>
               <Typography variant="h5" sx={{ marginBottom: "10px" }}>

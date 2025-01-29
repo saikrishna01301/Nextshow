@@ -8,16 +8,7 @@ import MovieDetails from "./MovieDetails.component";
 import ShowTime from "./ShowTime.component";
 import { userMovieContext } from "../../Contexts/UserMovie.context";
 import { useContext } from "react";
-
-const Filter = styled(Typography)(({ theme }) => ({
-  fontSize: "16px",
-  borderLeft: "1px solid #d0d5e6",
-  padding: "15px",
-  alignSelf: "stretch",
-  display: "flex",
-  alignItems: "center",
-  fontSize: "15px",
-}));
+import TicketFilters from "./TicketFilters.component";
 
 const BookTickets = () => {
   // const location = useLocation();
@@ -39,29 +30,8 @@ const BookTickets = () => {
         }}
       >
         <DatesBox />
-        <Box
-          sx={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "flex-end",
-            width: "50%",
-          }}
-        >
-          <Filter variant="body">
-            {movie.selected_language}-{movie.selected_format}
-            <KeyboardArrowDownIcon sx={{ fontSize: "25px" }} />
-          </Filter>
-          <Filter variant="body">
-            {movie.selected_language}-{movie.selected_format}
-            <KeyboardArrowDownIcon sx={{ fontSize: "25px" }} />
-          </Filter>
-          <Filter variant="body" sx={{ paddingRight: "0px" }}>
-            {movie.selected_language}-{movie.selected_format}
-            <KeyboardArrowDownIcon sx={{ fontSize: "25px" }} />
-          </Filter>
-        </Box>
+        <TicketFilters />
       </Box>
-
       <Box
         sx={{
           width: "100%",
