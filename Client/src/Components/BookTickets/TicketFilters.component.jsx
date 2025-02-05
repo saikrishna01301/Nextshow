@@ -6,14 +6,14 @@ import FilterDropdown from "./FilterDropdown/FilterDropdown.component";
 
 const Filter = styled(Typography)(({ theme }) => ({
   width: "170px",
-  fontSize: "16px",
+  fontSize: "12px",
   borderLeft: "1px solid #d0d5e6",
+  color:"#666",
   padding: "15px",
   alignSelf: "stretch",
   display: "flex",
   justifyContent: "space-between",
   alignItems: "center",
-  fontSize: "15px",
 }));
 
 const TicketFilters = () => {
@@ -42,7 +42,16 @@ const TicketFilters = () => {
       >
         <Filter variant="body" onClick={handleClick}>
           {movie.selected_language}-{movie.selected_format}
-          <KeyboardArrowDownIcon sx={{ fontSize: "25px" }} />
+          <KeyboardArrowDownIcon sx={{ fontSize: "20px" }} />
+        </Filter>
+        <FilterDropdown
+          anchorEl={anchorEl}
+          open={open}
+          handleClose={handleClose}
+        />
+        <Filter variant="body" onClick={handleClick}>
+          Filter Price Range
+          <KeyboardArrowDownIcon sx={{ fontSize: "20px" }} />
         </Filter>
         <FilterDropdown
           anchorEl={anchorEl}
@@ -51,16 +60,7 @@ const TicketFilters = () => {
         />
         <Filter variant="body" onClick={handleClick}>
           {movie.selected_language}-{movie.selected_format}
-          <KeyboardArrowDownIcon sx={{ fontSize: "25px" }} />
-        </Filter>
-        <FilterDropdown
-          anchorEl={anchorEl}
-          open={open}
-          handleClose={handleClose}
-        />
-        <Filter variant="body" onClick={handleClick}>
-          {movie.selected_language}-{movie.selected_format}
-          <KeyboardArrowDownIcon sx={{ fontSize: "25px" }} />
+          <KeyboardArrowDownIcon sx={{ fontSize: "20px" }} />
         </Filter>
         <FilterDropdown
           anchorEl={anchorEl}

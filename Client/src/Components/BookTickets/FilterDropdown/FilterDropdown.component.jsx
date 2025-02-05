@@ -29,6 +29,7 @@ const theme = createTheme({
 });
 
 const StyledMenuItem = styled(MenuItem)(({ theme }) => ({
+  color: "#666",
   fontSize: "14px",
   background: "transparent",
   transition: "background-color 0.3s ease",

@@ -19,10 +19,11 @@ import {
   LocationSelection,
 } from "./Navbar.styled";
 import { SearchMovieContext } from "../../Contexts/SearchMovie.context";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import SignIn from "../Auth/SignIn.component";
 import Sidebar from "../Sidebar/Sidebar.component";
 import EmailPassword from "../Auth/EmailPassword.component";
+import Overlay from "../Sidebar/Overlay.component";
 
 const Navbar = () => {
   const { setSearchMovie } = useContext(SearchMovieContext);
@@ -33,6 +34,7 @@ const Navbar = () => {
   const [openDialog, setOpenDialog] = useState(false);
   const [openEmailPassword, setOpenEmailPassword] = useState(false);
   // const [toggleDialog, setToggleDialog] = useState(handleDialog);
+  const [active, setActive] = useState(false);
 
   const handleDialog = () => {
     setOpenDialog(true);
@@ -51,11 +53,24 @@ const Navbar = () => {
     setOpenEmailPassword(true);
     setOpenDialog(false);
   };
+  const toggleSidebar = () => {
+    setActive(!active);
+  };
+  const closeSidebar = () => {
+    setActive(false);
+  };
+  useEffect(() => {
+    active
+      ? (document.body.style.overflow = "hidden")
+      : (document.body.style.overflow = "auto");
+  }, [active]);
 
   return (
     <>
       <Dialog />
-      <AppBar position="sticky" sx={{ backgroundColor: "#fff" }}>
+      <Overlay active={active} closeSidebar={closeSidebar} />
+      <Sidebar active={active} />
+      <AppBar position="sticky" sx={{ backgroundColor: "#fff", zIndex: "6" }}>
         <StyledToolbar>
           <Link component={NavLink} to="/" underline="none">
             <Typography
@@ -107,6 +122,7 @@ const Navbar = () => {
                 height: "28px",
                 cursor: "pointer",
               }}
+              onClick={toggleSidebar}
             />
           </StyledBox>
         </StyledToolbar>
@@ -123,7 +139,6 @@ const Navbar = () => {
         open={openEmailPassword}
         handleClose={handleEmailPasswordClose}
       ></EmailPassword>
-      <Sidebar />
     </>
   );
 };

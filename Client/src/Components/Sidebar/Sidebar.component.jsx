@@ -1,4 +1,5 @@
 import {
+  ContactSupportOutlined,
   Group,
   Home,
   ModeNight,
@@ -10,58 +11,71 @@ import {
 } from "@mui/icons-material";
 import {
   Box,
+  Divider,
   List,
   ListItem,
   ListItemButton,
   ListItemIcon,
   ListItemText,
+  styled,
   Switch,
+  Typography,
 } from "@mui/material";
 import React from "react";
 
-const Sidebar = () => {
+const SidebarContainer = styled(Box)(({ theme }) => ({
+  backgroundColor: "#fff",
+  position: "absolute",
+  top: 0,
+  right: "-350px",
+  height: "100vh",
+  width: "350px",
+  padding: 0,
+  zIndex: 100,
+  transition: "right 0.3s ease",
+  "&.active": { right: "0" },
+}));
+
+const StyledList = styled(List)(({ theme }) => ({
+  padding: 0,
+  "& .MuiSvgIcon-root ": {
+    fontSize: "20px",
+  },
+  "& .MuiListItemText-primary": {
+    fontSize: "16px",
+  },
+}));
+const Sidebar = ({ active }) => {
+  console.log(active);
   return (
-    <Box flex={1} p={2} sx={{display: { xs: "none", sm: "block" } }}>
-      <Box position="fixed">
-        <List>
+    <SidebarContainer
+      flex={1}
+      p={2}
+      sx={{ display: { xs: "none", sm: "block" } }}
+      className={active ? "active" : ""}
+    >
+      <Box>
+        <Box sx={{ padding: "15px" }}>
+          <Typography sx={{ fontSize: "24px", color: "#333" }}>
+            Hello! <br /> Welcome back Sai Krishna
+          </Typography>
+        </Box>
+        <Divider />
+        <StyledList>
           <ListItem disablePadding>
             <ListItemButton component="a" href="#Home">
               <ListItemIcon>
                 <Home />
               </ListItemIcon>
-              <ListItemText primary="Home" />
+              <ListItemText primary="Your Orders" />
             </ListItemButton>
           </ListItem>
           <ListItem disablePadding>
             <ListItemButton component="a" href="#Pages">
               <ListItemIcon>
-                <Pages />
+                <ContactSupportOutlined />
               </ListItemIcon>
-              <ListItemText primary="Pages" />
-            </ListItemButton>
-          </ListItem>
-          <ListItem disablePadding>
-            <ListItemButton component="a" href="#Group">
-              <ListItemIcon>
-                <Group />
-              </ListItemIcon>
-              <ListItemText primary="Group" />
-            </ListItemButton>
-          </ListItem>
-          <ListItem disablePadding>
-            <ListItemButton component="a" href="#Marketplace">
-              <ListItemIcon>
-                <Storefront />
-              </ListItemIcon>
-              <ListItemText primary="Marketplace" />
-            </ListItemButton>
-          </ListItem>
-          <ListItem disablePadding>
-            <ListItemButton component="a" href="#Person">
-              <ListItemIcon>
-                <Person />
-              </ListItemIcon>
-              <ListItemText primary="Friends" />
+              <ListItemText primary="Contact Support" />
             </ListItemButton>
           </ListItem>
           <ListItem disablePadding>
@@ -73,14 +87,6 @@ const Sidebar = () => {
             </ListItemButton>
           </ListItem>
           <ListItem disablePadding>
-            <ListItemButton component="a" href="#Profile">
-              <ListItemIcon>
-                <Portrait />
-              </ListItemIcon>
-              <ListItemText primary="Profile" />
-            </ListItemButton>
-          </ListItem>
-          <ListItem disablePadding>
             <ListItemButton component="a" href="#switch">
               <ListItemIcon>
                 <ModeNight />
@@ -88,9 +94,9 @@ const Sidebar = () => {
               <Switch></Switch>
             </ListItemButton>
           </ListItem>
-        </List>
+        </StyledList>
       </Box>
-    </Box>
+    </SidebarContainer>
   );
 };
 
